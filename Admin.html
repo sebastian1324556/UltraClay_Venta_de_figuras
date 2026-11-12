@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0b0a1a">
+  <title>Panel de administración · ULTRA M 64</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Styles/main.css">
+  <link rel="stylesheet" href="Styles/admin.css">
+  <script src="Scripts/common.js" defer></script>
+  <script src="Scripts/admin.js" defer></script>
+</head>
+<body class="admin-body">
+
+  <!-- ======================= LOGIN ADMIN ======================= -->
+  <section class="login-wrap hidden" id="loginView">
+    <div class="login-card">
+      <img src="images/logo.png" alt="Logo ULTRA M 64">
+      <h1 style="font-size:1.8rem">Panel de administración</h1>
+      <p class="muted" style="margin-bottom:1.2rem">Solo para administradores de ULTRA M 64.</p>
+      <form id="adminLoginForm" class="form-grid" novalidate>
+        <div class="field">
+          <label for="adminEmail">Correo</label>
+          <input id="adminEmail" type="email" required autocomplete="username">
+        </div>
+        <div class="field">
+          <label for="adminPassword">Contraseña</label>
+          <input id="adminPassword" type="password" required autocomplete="current-password">
+        </div>
+        <p class="form-error" id="adminLoginError"></p>
+        <button type="submit" class="btn btn-primary btn-block">Entrar al panel</button>
+      </form>
+      <p style="margin-top:1.2rem"><a href="Index.html" class="muted">← Volver a la tienda</a></p>
+    </div>
+  </section>
+
+  <!-- ======================= PANEL ======================= -->
+  <div id="panelView" class="hidden">
+    <header class="admin-top">
+      <div class="container admin-top-inner">
+        <a href="Admin.html" class="brand">
+          <img src="images/logo.png" alt="Logo ULTRA M 64">
+          <span>
+            <span data-c="brand_name">ULTRA M 64</span>
+            <small>Administración</small>
+          </span>
+        </a>
+        <div class="admin-top-actions">
+          <span class="who" id="adminUser"></span>
+          <a href="Index.html" class="btn btn-ghost btn-sm">Ver tienda</a>
+          <button type="button" class="btn btn-danger btn-sm" id="adminLogout">Salir</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container admin-main">
+      <nav class="admin-tabs" aria-label="Secciones del panel">
+        <button type="button" class="admin-tab active" data-view="orders">
+          Pedidos <span class="count-pill" id="pendingPill">0</span>
+        </button>
+        <button type="button" class="admin-tab" data-view="products">Figuras</button>
+        <button type="button" class="admin-tab" data-view="content">Textos e imágenes</button>
+        <button type="button" class="admin-tab" data-view="payments">Pagos y envíos</button>
+        <button type="button" class="admin-tab" data-view="users">Usuarios</button>
+      </nav>
+
+      <!-- ---------- PEDIDOS ---------- -->
+      <section class="admin-view" id="view-orders">
+        <div class="admin-view-head">
+          <h2>Pedidos de clientes</h2>
+          <div class="toolbar">
+            <select class="select" id="orderFilter" aria-label="Filtrar pedidos">
+              <option value="todos">Todos los estados</option>
+              <option value="pendiente">Pendientes de pago</option>
+              <option value="pagado">Pagados</option>
+              <option value="entregado">Entregados</option>
+              <option value="cancelado">Cancelados</option>
+            </select>
+            <button type="button" class="btn btn-ghost btn-sm" id="refreshOrders">Actualizar</button>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><span>Pedidos</span><strong id="statTotal">0</strong></div>
+          <div class="stat"><span>Pendientes</span><strong id="statPending">0</strong></div>
+          <div class="stat"><span>Pagados</span><strong id="statPaid">0</strong></div>
+          <div class="stat"><span>Ingresos confirmados</span><strong id="statIncome">$0</strong></div>
+        </div>
+
+        <div id="ordersList"></div>
+      </section>
+
+      <!-- ---------- FIGURAS ---------- -->
+      <section class="admin-view hidden" id="view-products">
+        <div class="admin-view-head">
+          <h2>Figuras y precios</h2>
+          <button type="button" class="btn btn-primary" id="newProductBtn">+ Nueva figura</button>
+        </div>
+        <div class="admin-products" id="productsList"></div>
+      </section>
+
+      <!-- ---------- TEXTOS E IMÁGENES ---------- -->
+      <section class="admin-view hidden" id="view-content">
+        <div class="admin-view-head">
+          <div>
+            <h2>Textos e imágenes de la página</h2>
+            <p class="muted" style="margin:0">Edita cualquier texto, imagen o color y guarda para publicarlo.</p>
+          </div>
+        </div>
+        <div class="settings-grid" id="contentFields"></div>
+        <div class="savebar">
+          <a href="Index.html" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Ver tienda</a>
+          <button type="button" class="btn btn-primary" id="saveContent">Guardar cambios</button>
+        </div>
+      </section>
+
+      <!-- ---------- PAGOS Y ENVÍOS ---------- -->
+      <section class="admin-view hidden" id="view-payments">
+        <div class="admin-view-head">
+          <div>
+            <h2>Pagos y tiempo de entrega</h2>
+            <p class="muted" style="margin:0">Configura cómo pagan tus clientes y qué tiempo de entrega ven después de pagar.</p>
+          </div>
+        </div>
+        <div class="settings-grid">
+          <div class="admin-card" id="paymentFields"></div>
+          <div class="admin-card">
+            <h3>Cómo funciona</h3>
+            <p class="muted">1. El cliente arma su carrito, elige la cantidad de cada figura y continúa.</p>
+            <p class="muted">2. Completa sus datos y elige el método de pago (WhatsApp, o Nequi cuando lo actives).</p>
+            <p class="muted">3. El pedido aparece en la pestaña <strong>Pedidos</strong>. Cuando confirmes el pago, pulsa <strong>Marcar como pagado</strong>.</p>
+            <p class="muted">4. Desde ese momento, el cliente ve en su historial el tiempo de entrega que escribas aquí.</p>
+          </div>
+        </div>
+        <div class="savebar">
+          <button type="button" class="btn btn-primary" id="savePayments">Guardar cambios</button>
+        </div>
+      </section>
+
+      <!-- ---------- USUARIOS ---------- -->
+      <section class="admin-view hidden" id="view-users">
+        <div class="admin-view-head">
+          <h2>Usuarios registrados</h2>
+          <button type="button" class="btn btn-ghost btn-sm" id="refreshUsers">Actualizar</button>
+        </div>
+        <div class="user-table" id="usersList"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ======================= OVERLAY Y MODAL DE FIGURA ======================= -->
+  <div class="overlay" id="overlay"></div>
+
+  <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+    <div class="modal-head">
+      <h2 id="productModalTitle">Nueva figura</h2>
+      <button type="button" class="close-btn" data-close aria-label="Cerrar">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="productForm" class="form-grid" novalidate>
+        <div class="field">
+          <label for="pName">Nombre de la figura</label>
+          <input id="pName" required maxlength="120">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+          <div class="field">
+            <label for="pPrice">Precio (COP)</label>
+            <input id="pPrice" type="number" min="0" step="500" required inputmode="numeric">
+          </div>
+          <div class="field">
+            <label for="pCategory">Categoría</label>
+            <input id="pCategory" maxlength="60" value="General">
+          </div>
+        </div>
+        <div class="field">
+          <label for="pDescription">Descripción</label>
+          <textarea id="pDescription" maxlength="2000"></textarea>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;align-items:end">
+          <div class="field">
+            <label for="pSort">Orden en la tienda</label>
+            <input id="pSort" type="number" min="0" value="1">
+          </div>
+          <label class="pay-option" style="margin:0">
+            <input type="checkbox" id="pActive" checked>
+            <span><strong>Visible en la tienda</strong><small>Desmárcala para ocultarla sin borrarla.</small></span>
+          </label>
+        </div>
+        <div class="field">
+          <label>Imagen de la figura</label>
+          <div class="img-field">
+            <div class="img-preview" id="pPreview"></div>
+            <div class="img-actions">
+              <label class="btn btn-ghost btn-sm">Subir imagen<input type="file" accept="image/*" id="pImage" hidden></label>
+              <button type="button" class="btn btn-ghost btn-sm" id="pClearImage">Quitar imagen</button>
+            </div>
+          </div>
+        </div>
+        <p class="form-error" id="pError"></p>
+        <button type="submit" class="btn btn-primary btn-block" id="productSave">Guardar figura</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

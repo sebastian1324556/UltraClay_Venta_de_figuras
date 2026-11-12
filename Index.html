@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="ULTRA M 64 · Figuras de arcilla polimérica hechas a mano inspiradas en Friday Night Funkin'.">
+  <meta name="theme-color" content="#0b0a1a">
+  <title>ULTRA M 64 · Figuras de arcilla polimérica</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Styles/main.css">
+  <script src="Scripts/common.js" defer></script>
+  <script src="Scripts/index.js" defer></script>
+</head>
+<body>
+
+  <!-- ======================= ENCABEZADO ======================= -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#inicio" class="brand" aria-label="Inicio">
+        <img data-img="logo_image" src="images/logo.png" alt="Logo ULTRA M 64">
+        <span data-c="brand_name">ULTRA M 64</span>
+      </a>
+
+      <nav class="nav" id="mainNav" aria-label="Principal">
+        <a href="#productos">Figuras</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+        <a href="Admin.html" id="adminLink" class="hidden">Panel admin</a>
+      </nav>
+
+      <div class="header-actions">
+        <span class="user-chip hidden" id="userChip"></span>
+        <button type="button" class="btn btn-ghost btn-sm hidden" id="ordersBtn">Mis pedidos</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="loginBtn">Iniciar sesión</button>
+        <button type="button" class="btn btn-ghost btn-sm hidden" id="logoutBtn">Salir</button>
+        <button type="button" class="icon-btn" id="cartBtn" aria-label="Abrir carrito">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="badge hidden" id="cartCount">0</span>
+        </button>
+        <button type="button" class="icon-btn menu-toggle" id="menuToggle" aria-label="Menú">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="inicio">
+
+    <!-- ======================= PORTADA ======================= -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow" data-c="hero_eyebrow">Canal de YouTube · Arcilla polimérica</span>
+          <h1 data-c="hero_title">Figuras de arcilla polimérica hechas a mano</h1>
+          <p class="hero-sub" data-c="hero_subtitle">Recreaciones de Friday Night Funkin' en versión clay, modeladas una a una por ULTRA M 64.</p>
+          <div class="hero-actions">
+            <a href="#productos" class="btn btn-primary" data-c="hero_button">Ver figuras</a>
+            <a href="https://www.youtube.com/@Ultra_m_64" class="btn btn-ghost" data-href="youtube_url" target="_blank" rel="noopener">Ver canal en YouTube</a>
+          </div>
+        </div>
+        <figure class="hero-media" style="margin:0">
+          <img data-img="hero_image" src="images/hero.jpg" alt="Figuras de arcilla polimérica de ULTRA M 64">
+          <div class="arrows" aria-hidden="true"><span>◀</span><span>▼</span><span>▲</span><span>▶</span></div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ======================= CATÁLOGO ======================= -->
+    <section class="section" id="productos">
+      <div class="container">
+        <div class="catalog-head">
+          <div>
+            <h2 class="section-title" data-c="products_title">Nuestras figuras</h2>
+            <p class="section-subtitle" data-c="products_subtitle">Elige tu figura, ajusta la cantidad en el carrito y paga por WhatsApp o Nequi.</p>
+          </div>
+          <input type="search" class="search" id="search" placeholder="Buscar figura…" aria-label="Buscar figura">
+        </div>
+        <div class="chips" id="chips"></div>
+        <div class="grid-products" id="productGrid"></div>
+        <div class="empty hidden" id="emptyState">No encontramos figuras con ese nombre. Prueba con otra búsqueda.</div>
+      </div>
+    </section>
+
+    <!-- ======================= NOSOTROS ======================= -->
+    <section class="section" id="nosotros" style="background: rgba(255,255,255,0.02)">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-media">
+            <img data-img="about_image" src="images/about.jpg" alt="Taller de arcilla polimérica">
+          </div>
+          <div>
+            <span class="eyebrow">Sobre mí</span>
+            <h2 class="section-title" data-c="about_title">Sobre ULTRA M 64</h2>
+            <p class="section-subtitle" data-c="about_text">Soy un creador de contenido que modela cada personaje a mano con arcilla polimérica.</p>
+          </div>
+        </div>
+        <div class="features">
+          <article class="feature">
+            <h3 data-c="feature_1_title">100% hecho a mano</h3>
+            <p data-c="feature_1_text">Cada figura se modela y pinta a mano, detalle por detalle.</p>
+          </article>
+          <article class="feature">
+            <h3 data-c="feature_2_title">Inspirado en FNF</h3>
+            <p data-c="feature_2_text">Personajes y mods de Friday Night Funkin' en versión clay.</p>
+          </article>
+          <article class="feature">
+            <h3 data-c="feature_3_title">Pedido con seguimiento</h3>
+            <p data-c="feature_3_text">Revisa el estado de tus compras en tu historial de pedidos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CONTACTO ======================= -->
+    <section class="section" id="contacto">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <h2 class="section-title" data-c="contact_title">Contacto</h2>
+            <p class="section-subtitle" data-c="contact_text">¿Tienes una idea o un personaje especial en mente? Escríbeme por WhatsApp.</p>
+          </div>
+          <div class="socials">
+            <a class="btn btn-accent hidden" data-wa href="#" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+            <a class="btn btn-ghost hidden" data-href="instagram_url" href="#" target="_blank" rel="noopener">Instagram</a>
+            <a class="btn btn-ghost" data-href="tiktok_url" href="#" target="_blank" rel="noopener">TikTok</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================= PIE ======================= -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span data-c="footer_text">© ULTRA M 64. Todos los derechos reservados.</span>
+      <a href="Admin.html" style="color:var(--muted);font-size:.8rem">Acceso administrador</a>
+    </div>
+  </footer>
+
+  <!-- ======================= OVERLAY ======================= -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ======================= CARRITO ======================= -->
+  <aside class="drawer" id="cartDrawer" aria-label="Carrito de compras">
+    <div class="drawer-head" style="display:flex;justify-content:space-between;align-items:center">
+      <h2 style="margin:0;font-size:1.5rem">Tu carrito</h2>
+      <button type="button" class="close-btn" data-close aria-label="Cerrar">×</button>
+    </div>
+    <div class="drawer-body" id="cartItems"></div>
+    <div class="drawer-foot">
+      <div class="totals"><span>Total</span><span class="price" id="cartTotal">$0</span></div>
+      <button type="button" class="btn btn-primary btn-block" id="continueBtn" disabled>Continuar</button>
+    </div>
+  </aside>
+
+  <!-- ======================= CHECKOUT ======================= -->
+  <div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+    <div class="modal-head">
+      <h2 id="checkoutTitle">Finalizar pedido</h2>
+      <button type="button" class="close-btn" data-close aria-label="Cerrar">×</button>
+    </div>
+    <div class="modal-body">
+      <div id="checkoutSummary" style="margin-bottom:1.1rem"></div>
+      <form id="checkoutForm" class="form-grid" novalidate>
+        <div class="field">
+          <label for="checkoutName">Nombre completo</label>
+          <input id="checkoutName" required maxlength="120" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="checkoutPhone">Teléfono / WhatsApp</label>
+          <input id="checkoutPhone" required maxlength="30" inputmode="tel" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="checkoutAddress">Dirección de entrega (ciudad y barrio)</label>
+          <textarea id="checkoutAddress" required maxlength="300" autocomplete="street-address"></textarea>
+        </div>
+        <div class="field">
+          <label for="checkoutNotes">Notas (opcional)</label>
+          <textarea id="checkoutNotes" maxlength="500" placeholder="Colores, personalizaciones, etc."></textarea>
+        </div>
+
+        <div>
+          <label class="form-hint" style="display:block;font-weight:800;margin-bottom:.4rem">Método de pago</label>
+          <div class="form-grid" style="gap:.6rem">
+            <label class="pay-option selected">
+              <input type="radio" name="payment" value="whatsapp" checked>
+              <span>
+                <strong>Pago por WhatsApp</strong>
+                <small>Enviamos el resumen de tu pedido y coordinamos el pago por WhatsApp.</small>
+              </span>
+            </label>
+            <label class="pay-option disabled" id="nequiOption">
+              <input type="radio" name="payment" value="nequi" disabled>
+              <span>
+                <strong>Pago con Nequi</strong>
+                <small id="nequiHint">Próximamente disponible.</small>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <p class="form-error" id="checkoutError"></p>
+        <button type="submit" class="btn btn-primary btn-block" id="checkoutSubmit">Confirmar pedido</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================= CUENTA ======================= -->
+  <div class="modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="modal-head">
+      <h2 id="authTitle">Tu cuenta</h2>
+      <button type="button" class="close-btn" data-close aria-label="Cerrar">×</button>
+    </div>
+    <div class="modal-body">
+      <p class="form-hint hidden" id="authNotice" style="background:rgba(0,229,255,.08);border-radius:12px;padding:.7rem .9rem;color:var(--text)"></p>
+      <div class="tabs">
+        <button type="button" class="tab active" data-tab="login">Iniciar sesión</button>
+        <button type="button" class="tab" data-tab="register">Crear cuenta</button>
+      </div>
+
+      <form id="loginForm" class="form-grid" novalidate>
+        <div class="field">
+          <label for="loginEmail">Correo electrónico</label>
+          <input id="loginEmail" type="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="loginPassword">Contraseña</label>
+          <input id="loginPassword" type="password" required autocomplete="current-password">
+        </div>
+        <p class="form-error" id="loginError"></p>
+        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+      </form>
+
+      <form id="registerForm" class="form-grid hidden" novalidate>
+        <div class="field">
+          <label for="regName">Nombre completo</label>
+          <input id="regName" required maxlength="80" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="regEmail">Correo electrónico</label>
+          <input id="regEmail" type="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="regPhone">Teléfono / WhatsApp</label>
+          <input id="regPhone" maxlength="30" inputmode="tel" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="regPassword">Contraseña (mínimo 6 caracteres)</label>
+          <input id="regPassword" type="password" required minlength="6" autocomplete="new-password">
+        </div>
+        <p class="form-error" id="registerError"></p>
+        <button type="submit" class="btn btn-primary btn-block">Crear cuenta</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================= MIS PEDIDOS ======================= -->
+  <div class="modal" id="ordersModal" role="dialog" aria-modal="true" aria-labelledby="ordersTitle">
+    <div class="modal-head">
+      <h2 id="ordersTitle">Mis pedidos</h2>
+      <button type="button" class="close-btn" data-close aria-label="Cerrar">×</button>
+    </div>
+    <div class="modal-body">
+      <div id="ordersList"></div>
+      <button type="button" class="btn btn-ghost btn-block" id="logoutFromOrders" style="margin-top:.4rem">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <!-- ======================= PEDIDO CREADO ======================= -->
+  <div class="modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+    <div class="modal-head">
+      <h2 id="successTitle">¡Pedido creado!</h2>
+      <button type="button" class="close-btn" data-close aria-label="Cerrar">×</button>
+    </div>
+    <div class="modal-body">
+      <div id="successBody"></div>
+      <a href="#" id="whatsappLink" class="btn btn-accent btn-block" target="_blank" rel="noopener">Enviar pedido por WhatsApp</a>
+      <button type="button" class="btn btn-ghost btn-block" style="margin-top:.6rem" data-close>Seguir comprando</button>
+    </div>
+  </div>
+
+</body>
+</html>
