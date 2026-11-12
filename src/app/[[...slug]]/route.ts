@@ -7,7 +7,7 @@ import { handleRequest } from "../../../functions/_lib/router.js";
 export const dynamic = "force-dynamic";
 
 const ROOT = process.cwd();
-const ALLOWED_FILES = new Set(["Index.html", "Admin.html"]);
+const ALLOWED_FILES = new Set(["index.html", "Admin.html"]);
 const ALLOWED_DIRS = ["Styles/", "Scripts/", "images/"];
 
 const CONTENT_TYPES: Record<string, string> = {
@@ -27,9 +27,9 @@ type Ctx = { params: Promise<{ slug?: string[] }> };
 
 async function serveStatic(slug: string[]): Promise<Response> {
   let rel = slug.join("/");
-  if (rel === "") rel = "Index.html";
+  if (rel === "") rel = "index.html";
   if (rel === "admin" || rel === "admin.html") rel = "Admin.html";
-  if (rel === "index" || rel === "index.html") rel = "Index.html";
+  if (rel === "index") rel = "index.html";
 
   const allowed = ALLOWED_FILES.has(rel) || ALLOWED_DIRS.some((dir) => rel.startsWith(dir));
   if (!allowed || rel.includes("..")) {
